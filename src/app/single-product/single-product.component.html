@@ -1,0 +1,7 @@
+<div class="col-sm-2">
+  <div id="oneProduct" (click)="addToCartOrUpdate()" matTooltip={{toolTip}}>
+    <img [src]="oneProduct.productImage" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'">
+    <h2>{{oneProduct.productPrice | currency }}</h2>
+    <h2>{{oneProduct.productName}}</h2>
+  </div>
+</div>

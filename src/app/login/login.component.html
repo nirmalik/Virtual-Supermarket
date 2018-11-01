@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4 loginPanel">
+      <div class="button-row">
+        <button mat-stroked-button color="primary" (click)="goToStore()" class="shoppingButton">{{resumeOrStart}}</button>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="formDiv">
+        <mat-form-field>
+          <input matInput placeholder="Username" [(ngModel)]="username">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" [(ngModel)]="password">
+        </mat-form-field>
+        <br>
+        <p id="loginError"></p>
+        <br>
+        <button mat-stroked-button class="loginButton" (click)="login()">Login</button>
+        <br>
+        <a [routerLink]="'/register'">Sign Up</a>
+      </div>
+    </div>
+    <div class="col-sm-4 adv">
+      <img src="https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/7wfbAwq/caucasian-family-eating-lunch-outdoors-at-a-beach-resort_eybkdmpa__F0000.png">
+      <h1>This is a big friend store, we have everything you could ever wish for! Join
+        us and enjoy what we have to offer!</h1>
+    </div>
+    <div class="col-sm-4 records">
+      <h2>Available products in our store: {{allProducts}}</h2>
+      <h2>Number of orders submitted in our store: {{allOrders}}</h2>
+      <h2 *ngIf="!noOpenCart">{{currentCartMsg}} {{cartDateCreated | date}}</h2>
+      <h2 *ngIf="!noOpenCart">Total price of your cart: {{cartTotalPrice}}</h2>
+      <h2 *ngIf="noOpenCart && blabla"> Your last order was at: {{currentCartMsg | date}}</h2>
+      <h2 *ngIf="noOpenCart && !blabla"> {{cartDateCreated}}</h2>
+      <br>
+      <h2 id="notification"></h2>
+    </div>
+  </div>
+</div>

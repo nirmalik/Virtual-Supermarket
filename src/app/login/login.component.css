@@ -1,0 +1,30 @@
+.loginPanel{
+    height: 830px;
+}
+.adv{
+    background-color: yellow;
+    height: 830px;
+}
+.records{
+    background-color: red;
+    height: 830px;
+}
+
+.shoppingButton{
+    height: 200pxx;
+    width: 300px;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+.formDiv{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+  }
+.loginButton{
+    width: 150px;
+}
+.adv img{
+    width: 100%;
+    margin-top: 10px;
+}

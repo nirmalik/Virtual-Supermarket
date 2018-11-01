@@ -1,0 +1,12 @@
+img{
+    width: 150px;
+    height: 90px;
+}
+#oneItem{
+    background-color: lightseagreen;
+    border: 2px solid red;
+}
+i{
+    float: right;
+    cursor: pointer;
+}

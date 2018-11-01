@@ -1,0 +1,23 @@
+
+
+.col-sm-6{
+    background-color: blue;
+    height: 700px;
+    margin-top: 100px;
+}
+.firstForm{
+    background-color: lightblue;
+    width: 80%;
+    height: 550px;
+    margin-top: 20px;
+    margin-left: 50px;
+    font-size: 20px;
+}
+.secondForm{
+    background-color: lightblue;
+    width: 80%;
+    height: 550px;
+    margin-top: 20px;
+    margin-left: 50px;
+    font-size: 20px;
+}

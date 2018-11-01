@@ -1,0 +1,169 @@
+<div class="container">
+  <div class="row">
+    <mat-horizontal-stepper linear #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Pls Enter  your ID, email and password</ng-template>
+          <mat-form-field>
+            <input id="customerid" (blur)="checkID()" matInput type="number" placeholder="ID" formControlName="customerid" required>
+          </mat-form-field>
+          <p id="idError"></p>
+          <br>
+          <mat-form-field>
+            <input matInput id="email" (blur)="checkEmail()" type="email" placeholder="Email" formControlName="username" required>
+          </mat-form-field>
+          <p id="emailError"></p>
+          <br>
+          <mat-form-field>
+            <input matInput id="password" type="password" placeholder="Password" formControlName="password" required>
+          </mat-form-field>
+          <br>
+          <br>
+          <br>
+          <mat-form-field>
+            <input matInput id="confirmPassword" (keyup)="checkPassword()" type="password" placeholder="Confirm Password" required>
+          </mat-form-field>
+          <p id="passwordError"></p>
+          <br>
+          <div>
+            <button mat-button matStepperNext [disabled]="!firstFormOk">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Pls Enter your full name and address</ng-template>
+          <mat-form-field>
+            <mat-select placeholder="City" formControlName="city" id="city">
+              <mat-option *ngFor="let city of cities" value="{{city.name}}">
+                {{city.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Street" formControlName="street" required id="street">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Name" formControlName="name" required id="name">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Last Name" formControlName="familyName" required id="familyName">
+          </mat-form-field>
+          <br>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext (click)="saveControls()">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button (click)="signUp()">Submit!</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="col-sm-6">
+      <h2>First step:</h2>
+      <div class="firstForm">
+        <mat-form-field>
+          <input matInput type="number" placeholder="ID" ng-pattern="/^[0-9]+$/" (blur)="checkID()" [(ngModel)]="customerID">
+        </mat-form-field>
+        <p id="idError"></p>
+        <mat-form-field>
+          <input matInput type="email" placeholder="Email" (blur)="checkEmail()" [(ngModel)]="username">
+        </mat-form-field>
+        <p id="emailError"></p>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" [(ngModel)]="password">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Confirm Password" (keyup)="checkPassword()" [(ngModel)]="confirmPassword">
+        </mat-form-field>
+        <p id="passwordError"></p>
+        <br>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h2>Second step:</h2>
+      <div class="secondForm">
+        <mat-form-field>
+          <mat-select placeholder="City" [(ngModel)]="city">
+            <mat-option *ngFor="let city of cities" value="{{city.name}}">
+              {{city.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Street" [(ngModel)]="street">
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Name" [(ngModel)]="name">
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Last Name" [(ngModel)]="lastName">
+        </mat-form-field>
+        <br>
+        <button mat-stroked-button class="signUp" (click)="signUp()">Submit</button>
+      </div>
+    </div> -->
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <img src="http://www.gvnjhns.com/static/img/posts/super/super-logo.png" (click)="goHome()" matTooltip="Go to homepage">
+    </div>
+    <div class="col-sm-6">
+
+    </div>
+    <div class="col-sm-4 contactUs">
+      <h3>Call us for questions - 054787878</h3>
+      <h3>Email for complaints - nir1234malik@gmail.com</h3>
+      <h4>Hello {{currentUserName}}!</h4>
+      <button mat-raised-button color="primary" (click)="logout()" *ngIf="!hideLogoutBtn">Logout</button>
+    </div>
+  </div>
+</div>

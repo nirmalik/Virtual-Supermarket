@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>How many would you like to purchase?</h1>
+<mat-dialog-content>
+  <mat-form-field>
+    <input id="quantity" matInput type="number">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="sendQuantity()">Purchase</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

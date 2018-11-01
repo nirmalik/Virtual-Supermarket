@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4">
+      <label>Search product:</label>&nbsp;&nbsp;
+      <mat-form-field>
+        <input matInput placeholder="Product name" [(ngModel)]="searchTerm">
+      </mat-form-field>
+      <i class="material-icons" (click)="searchProduct()" matTooltip="Search a product">search</i>
+    </div>
+    <div class="col-sm-8">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="formContainer">
+        <i class="material-icons addbtn" (click)="openForm()" matTooltip="Add a product">add_comment</i>
+        <div class="formDiv" *ngIf="openAddForm">
+          <form [formGroup]="productObj">
+            <h2>{{addOrEdit}} Product</h2>
+            <mat-form-field>
+              <input matInput placeholder="Product Name" formControlName="productName">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <input matInput type="number" placeholder="Product Price" formControlName="productPrice">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <input matInput placeholder="Product Picture" formControlName="productImage">
+            </mat-form-field>
+            <br>
+            <mat-select placeholder="Category" formControlName="category">
+              <mat-option *ngFor="let category of categories" value="{{category.name}}">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+            <mat-form-field>
+              <input matInput [hidden]="true" formControlName="_id">
+            </mat-form-field>
+            <br>
+            <br>
+            <br>
+            <br>
+            <button mat-stroked-button class="addProductBtn" (click)="addProduct()" [disabled]="!productObj.valid">{{addOrUpdate}}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8" id="productsPanel">
+      <div>
+        <button mat-stroked-button (click)="getAllProducts()" *ngIf="!categoriesElement">Show products by categories</button>
+      </div>
+      <div class="filteredProducts" *ngIf="!categoriesElement">
+        <app-single-product *ngFor="let product of productsArray" [oneProduct]="product"></app-single-product>
+      </div>
+      <div class="categories" *ngIf="categoriesElement">
+        <mat-tab-group (selectedTabChange)="navigate($event)" backgroundColor="primary">
+          <mat-tab label="Milk & Eggs">
+            <ng-template matTabContent>
+              <app-single-product *ngFor="let product of productsArray" [oneProduct]="product"></app-single-product>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="Vegetables & Fruits">
+            <ng-template matTabContent>
+              <app-single-product *ngFor="let product of productsArray" [oneProduct]="product"></app-single-product>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="Meat & Fish">
+            <ng-template matTabContent>
+              <app-single-product *ngFor="let product of productsArray" [oneProduct]="product"></app-single-product>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="Wine & Drinks">
+            <ng-template matTabContent>
+              <app-single-product *ngFor="let product of productsArray" [oneProduct]="product"></app-single-product>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

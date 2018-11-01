@@ -1,0 +1,7 @@
+<div id="oneItem" class="col-sm-6">
+    <i class="material-icons" *ngIf="showOrNot" (click)="removeProduct()" matTooltip="Delete item">clear</i>
+    <label>Name:</label><h5>{{singleItem.product[0].productName}}</h5>
+    <label>Quantity:</label><h4>{{singleItem.quantity}}</h4>
+    <label>TotalPrice</label><h4>{{singleItem.totalPrice}}</h4>
+    <img [src]="singleItem.product[0].productImage" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'">
+</div>

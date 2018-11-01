@@ -1,0 +1,124 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4">
+      <label>Search product:</label>&nbsp;&nbsp;
+      <mat-form-field>
+        <input matInput placeholder="Product name" (keyup)="onKeyUp()" [(ngModel)]="searchTerm">
+      </mat-form-field>
+      <i class="material-icons" *ngIf="showStoreOrOrder" (click)="searchProduct()" matTooltip="Search a product">search</i>
+    </div>
+    <div class="col-sm-8">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4" id="cartPanel">
+      <div class="cartContainer">
+        <h2>My Cart</h2>
+        <button mat-stroked-button (click)="deleteAllItems()" *ngIf="showStoreOrOrder">Delete all items</button>
+        <i class="material-icons arrowRight" *ngIf="showStoreOrOrder" (click)="normalCart()" matTooltip="Maximize cart"> arrow_forward</i>
+        <br>
+        <i class="material-icons arrowLeft" *ngIf="showStoreOrOrder" (click)="minimizeCart()" matTooltip="Minimize cart"> arrow_back</i>
+        <button mat-stroked-button class="backToShop" (click)="backToShop()" *ngIf="!showStoreOrOrder">Back to shop</button>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="cartItemsDiv">
+              <app-single-cart-item *ngFor="let item of cartItemsArray" [singleItem]="item"></app-single-cart-item>
+            </div>
+          </div>
+        </div>
+        <div class="cartFooter">
+          <h3 *ngIf="!showStoreOrOrder">NO CHANGES PERMITTED HERE!</h3>
+          <button mat-stroked-button class="openOrder" *ngIf="showStoreOrOrder" (click)="openOrderForm()">Order</button>
+          <h3 class="totalMoney">Total: {{cartOrderTotalPrice | currency}} </h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8" id="productsPanel" *ngIf="showStoreOrOrder">
+      <div>
+        <button mat-stroked-button (click)="getAllProducts()" *ngIf="!categoriesElement">Show products by categories</button>
+      </div>
+      <div class="filteredProducts" *ngIf="!categoriesElement">
+        <app-single-product *ngFor="let product of productsArray" [oneProduct]="product"></app-single-product>
+      </div>
+      <div class="categories" *ngIf="categoriesElement">
+        <mat-tab-group (selectedTabChange)="navigate($event)" backgroundColor="primary">
+          <mat-tab label="Milk & Eggs">
+            <ng-template matTabContent>
+              <mat-spinner *ngIf="showSpinner"></mat-spinner>
+              <app-single-product *ngFor="let product of productsArray" [oneProduct]="product"></app-single-product>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="Vegetables & Fruits">
+            <ng-template matTabContent>
+              <mat-spinner *ngIf="showSpinner"></mat-spinner>
+              <app-single-product *ngFor="let product of productsArray" [oneProduct]="product"></app-single-product>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="Meat & Fish">
+            <ng-template matTabContent>
+              <mat-spinner *ngIf="showSpinner"></mat-spinner>
+              <app-single-product *ngFor="let product of productsArray" [oneProduct]="product"></app-single-product>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="Wine & Drinks">
+            <ng-template matTabContent>
+              <mat-spinner *ngIf="showSpinner"></mat-spinner>
+              <app-single-product *ngFor="let product of productsArray" [oneProduct]="product"></app-single-product>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8" *ngIf="!showStoreOrOrder">
+      <div class="orderTitle">
+        <h3>
+          <u>Order</u>
+        </h3>
+      </div>
+      <br>
+      <div class="formDiv">
+        <div class="shippingTitle">
+          <h2> Shipping Details: </h2>
+        </div>
+        <form class="myForm" [formGroup]="orderObj">
+          <mat-form-field>
+            <input matInput placeholder="City" formControlName="city" [matAutocomplete]="auto1">
+            <mat-autocomplete #auto1="matAutocomplete">
+              <mat-option [value]="currentCustomer.city">
+                {{currentCustomer.city}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Street" formControlName="street" [matAutocomplete]="auto2">
+            <mat-autocomplete #auto2="matAutocomplete">
+              <mat-option [value]="currentCustomer.street">
+                {{currentCustomer.street}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput id="datepicker" placeholder="Shipping Date" (mouseover)="openDates()" formControlName="shippingDate">
+            <i class="material-icons helpIcon" matTooltip="Dear customer, due to high demand, some dates might be unavailable for shipping.">
+              help
+            </i>
+          </mat-form-field>
+          <br>
+          <h3>Payment:</h3>
+          <mat-form-field>
+            <input matInput id="creditCard" placeholder="e.g 1111-1111-1111-1111" (keyup)="checkCreditCard()" formControlName="paymentDigits">
+          </mat-form-field>
+          <p id="cardError"></p>
+          <br>
+          <button mat-stroked-button (click)="placeOrder()" [disabled]="!orderObj.valid || !creditCardValid ">Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
